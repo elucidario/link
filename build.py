@@ -6,6 +6,8 @@ def redirector():
     index = '<html><head><meta http-equiv="refresh" content="0;url=https://elucidario.art" /></head></html>'
     with open("./dist/index.html", "w") as file:
         file.write(index)
+    with open("./dist/404.html", "w") as file:
+        file.write(index)
     
     with open("redirects.json") as f:
         redirects = json.load(f)
