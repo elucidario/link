@@ -2,8 +2,12 @@
 
 def redirector():
     html = '<html><head><meta http-equiv="refresh" content="0;url={url}" /></head></html>'
+
+    index = html.format(url="https://elucidario.art")
+    cname = "link.elucidario.art"
     
-    index = '<html><head><meta http-equiv="refresh" content="0;url=https://elucidario.art" /></head></html>'
+    with open("./dist/CNAME", "w") as file:
+        file.write(cname)
     with open("./dist/index.html", "w") as file:
         file.write(index)
     with open("./dist/404.html", "w") as file:
@@ -20,7 +24,7 @@ def redirector():
             
             with open(file_path, "w") as file:
                 file.write(html_file)
-                
+
 if __name__ == "__main__": 
     import json
     import os
