@@ -3,6 +3,10 @@
 def redirector():
     html = '<html><head><meta http-equiv="refresh" content="0;url={url}" /></head></html>'
     
+    index = '<html><head><meta http-equiv="refresh" content="0;url=https://elucidario.art" /></head></html>'
+    with open("./dist/index.html", "w") as file:
+        file.write(index)
+    
     with open("redirects.json") as f:
         redirects = json.load(f)
         
