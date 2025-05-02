@@ -1,9 +1,15 @@
 
 
 def redirector():
-    html = '<html><head><meta http-equiv="refresh" content="0;url={url}" /></head></html>'
+    template_file = "./template.html"
+    
+    with open(template_file, "r") as file:
+        template = file.read()
+        
+    posthog_api_key = os.environ.get("POSTHOG_API_KEY")
+    print(f"POSTHOG_API_KEY: {posthog_api_key}")
 
-    index = html.format(url="https://elucidario.art")
+    index = template.replace("__REDIRECT_URL__", "https://elucidario.art").replace("__POSTHOG_API_KEY__", posthog_api_key)
     cname = "link.elucidario.art"
     
     with open("./dist/CNAME", "w") as file:
@@ -18,7 +24,7 @@ def redirector():
         
         for redirect in redirects:
             
-            html_file = html.format(url=redirect["url"])
+            html_file = template.replace("__REDIRECT_URL__", redirect["url"]).replace("__POSTHOG_API_KEY__", posthog_api_key)
             name = redirect["path"]
             file_path = f"./dist/{name}.html"
             
