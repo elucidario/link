@@ -1,0 +1,10 @@
+services:
+  links:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./:/app
+    env_file:
+      - .env.local
